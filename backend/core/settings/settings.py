@@ -77,12 +77,11 @@ REST_FRAMEWORK = {
 }
 
 ## Create directory for logs
-# LOG_DIR = path.join(BASE_DIR, 'logs')
 LOG_DIR = path.join(Path(BASE_DIR).resolve().parent, 'logs')
 if not path.exists(LOG_DIR):
     makedirs(LOG_DIR)
-ENV_LOG_FILE = path.join(LOG_DIR, f'{ENV_TYPE}_root.log')
-DJANGO_LOG_FILE = path.join(LOG_DIR, 'django.log')
+
+LOG_FILE = path.join(LOG_DIR, f'{ENV_TYPE}_root.log')
 
 LOGGING = {
     'version': 1,
@@ -90,23 +89,14 @@ LOGGING = {
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'root_file': {
-            'class': 'logging.FileHandler',
-            'filename': ENV_LOG_FILE,
-            'formatter': 'verbose',
-            'encoding': 'utf-8',
-        },
-        'django_file': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': DJANGO_LOG_FILE,
-            'maxBytes': 50000,
-            'backupCount': 2,
             'formatter': 'local',
+        },
+        'log_file': {
+            'class': 'logging.FileHandler',
+            'filename': LOG_FILE,
+            'formatter': 'verbose',
             'encoding': 'utf-8',
-        }
+        },
     },
     'formatters': {
         'verbose': {
@@ -120,13 +110,8 @@ LOGGING = {
     },
     'loggers': {
         'root': {
-            'handlers': ['console', 'root_file'],
+            'handlers': ['console', 'log_file'],
             "level": 'INFO'
-        },
-        'django': {
-            'handlers': ['console', 'django_file'],
-            'level': 'INFO',
-            'propagate': True
         },
     },
 }

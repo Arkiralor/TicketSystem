@@ -19,7 +19,7 @@ class Venue(Model):
     )
 
     name = CharField(max_length=256)
-    description = TextField()
+    description = TextField(blank=True, null=True)
     max_capacity = PositiveIntegerField(default=100)
 
     logo = ImageField(upload_to='images/logos/venues/', blank=True, null=True)
