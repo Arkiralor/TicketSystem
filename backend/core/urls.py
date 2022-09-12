@@ -1,5 +1,6 @@
 
 from django.contrib import admin
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from django.urls import path, include
@@ -13,7 +14,7 @@ urlpatterns = [
 
 if settings.DEBUG or settings.ENV_TYPE == 'dev':
     urlpatterns += [
-        # path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/images/favicon.ico'))),
+        path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/images/favicon.png'))),
         path('admin/', admin.site.urls),
     ]
 
@@ -23,7 +24,7 @@ if settings.DEBUG or settings.ENV_TYPE == 'dev':
 ## These url patterns are only available in a production environment
 elif settings.ENV_TYPE == 'prod' and not settings.DEBUG:
     urlpatterns += [
-        path('8ccb652246c932d0/', admin.site.urls),
+        path('ticket-system-admin/', admin.site.urls),
     ]
 
     logger.info('Running in production mode')
