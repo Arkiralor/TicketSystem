@@ -10,7 +10,7 @@ class UserRegex:
     EMAIL_REGEX = re.compile(
         r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
 
-    PHONE_REGEX_IN = re.compile(r'^[0-9]{10}$')  # 9864049831
+    PHONE_REGEX_IN = re.compile(r'^[6-9]{1}[0-9]{9}$')  # 9864049831
 
     # prithoo: I don't know what the format is; I just copied this from the internet.
     PHONE_REGEX_US = re.compile(r'^\([0-9]{3}\)[0-9]{3}-[0-9]{4}$')

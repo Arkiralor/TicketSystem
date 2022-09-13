@@ -17,7 +17,7 @@ class FakeUserUtils:
     DIGITS = tuple(j for j in range(0, 10))
 
     @classmethod
-    def generate_fake_users(cls, count:int=0):
+    def generate_fake_users(cls, count: int = 0):
         user_objs = []
 
         for i in range(count):
@@ -37,12 +37,12 @@ class FakeUserUtils:
                 user_objs.append(deserialized.instance)
             else:
                 logger.warn(f"ERROR:\t{deserialized.errors}")
-        
+
         profiles = cls.create_fake_user_profile(user_objs)
         return user_objs, profiles
 
     @classmethod
-    def create_fake_phone(cls, lenght:int=0):
+    def create_fake_phone(cls, lenght: int = 0):
         first_digit_list = tuple(i for i in range(6, 10))
         digit_list = [
             str(choice(first_digit_list)),
@@ -53,7 +53,7 @@ class FakeUserUtils:
         return ''.join(digit_list)
 
     @classmethod
-    def create_fake_user_profile(cls, users:List[User]=None):
+    def create_fake_user_profile(cls, users: List[User] = None):
         profiles = []
         for user in users:
             profile = UserProfile.objects.filter(user=user).first()
@@ -65,7 +65,8 @@ class FakeUserUtils:
                 "location": cls.fake.profile().get("residence")
             }
 
-            deserialized = UserProfileInputSerializer(instance=profile, data=profile_data)
+            deserialized = UserProfileInputSerializer(
+                instance=profile, data=profile_data)
             if deserialized.is_valid():
                 deserialized.save()
                 profiles.append(deserialized.instance)
@@ -80,6 +81,6 @@ def main():
     logger.info(f"Users:\t{users}")
     logger.info(f"User Profiles:\t{profiles}")
 
-if __name__=="__main__":
-    main()
 
+if __name__ == "__main__":
+    main()
