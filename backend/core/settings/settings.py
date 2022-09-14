@@ -86,6 +86,16 @@ LOG_FILE = path.join(LOG_DIR, f'{ENV_TYPE}_root.log')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[%(levelname)s|%(asctime)s.%(msecs)d|%(name)s|%(module)s|%(funcName)s:%(lineno)s]    %(message)s',
+            'datefmt': '%d/%b/%Y %H:%M:%S',
+        },
+        'local': {
+            'format': '[%(asctime)s|%(name)s|%(module)s|%(funcName)s:%(lineno)s]    %(message)s',
+            'datefmt': '%d/%b/%Y %H:%M:%S',
+        },
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
@@ -96,16 +106,6 @@ LOGGING = {
             'filename': LOG_FILE,
             'formatter': 'verbose',
             'encoding': 'utf-8',
-        },
-    },
-    'formatters': {
-        'verbose': {
-            'format': '[%(levelname)s|%(asctime)s.%(msecs)d|%(name)s|%(module)s|%(funcName)s:%(lineno)s]    %(message)s',
-            'datefmt': '%d/%b/%Y %H:%M:%S',
-        },
-        'local': {
-            'format': '[%(asctime)s|%(name)s|%(module)s|%(funcName)s:%(lineno)s]    %(message)s',
-            'datefmt': '%d/%b/%Y %H:%M:%S',
         },
     },
     'loggers': {

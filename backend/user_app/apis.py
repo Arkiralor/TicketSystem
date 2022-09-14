@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly, AllowAny
 
-from user_app.utils import UserRegistrationUtils
+from user_app.api_helpers import UserRegistrationUtils
 
 class RegisterUserAPI(APIView):
     

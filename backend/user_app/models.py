@@ -11,6 +11,7 @@ from django.template.defaultfilters import slugify
 from django.utils import timezone
 
 from user_app.constants import UserRegex
+from user_app.utils import UserModelUtils
 
 
 class User(AbstractUser):
@@ -82,6 +83,13 @@ class User(AbstractUser):
         self.first_name = self.first_name.title()
         self.last_name = self.last_name.title()
         super(User, self).save(*args, **kwargs)
+
+    @property
+    def name(self):
+        if self.regnal_number and self.regnal_number > 1:
+            return f"{self.first_name} {self.last_name} {UserModelUtils.translate_regnal_number(self.regnal_number)}"
+        else:
+            return f"{self.first_name} {self.last_name}"
 
     
     class Meta:

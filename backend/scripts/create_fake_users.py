@@ -77,7 +77,7 @@ class FakeUserUtils:
 
 
 def main():
-    users, profiles = FakeUserUtils.generate_fake_users(4)
+    users, profiles = FakeUserUtils.generate_fake_users(34)
     logger.info(f"Users:\t{users}")
     logger.info(f"User Profiles:\t{profiles}")
 
