@@ -144,5 +144,5 @@ OTP_ATTEMPT_TIMEOUT = int(environ.get('OTP_ATTEMPT_TIMEOUT', 0))
 ## GraphViz Config:
 GRAPH_MODELS = {
     'all_applications': True,
-    'graph_models': True,
+    'group_models': True,
 }
